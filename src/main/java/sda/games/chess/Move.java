@@ -23,4 +23,9 @@ public class Move {
         this.toY = toY;
     }
 
+    @Override
+    public String toString() {
+        return "fromX = " + fromX + ", fromY = " + fromY + ", toX = " + toX + ", toY = " + toY;
+    }
+
 }

@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class Player {
 
-    public void getMove() {
+    public Move getMove() {
 
         String inputMove = "";
 
@@ -16,11 +16,12 @@ public class Player {
         inputMove = scanner.nextLine();
         int fromX = Integer.parseInt(charToInt(inputMove.toUpperCase().charAt(0)));
         int fromY = Integer.parseInt(inputMove.substring(1, 2)) - 1;
-        int toX  = Integer.parseInt(charToInt(inputMove.toUpperCase().charAt(4)));
-        int toY = Integer.parseInt(inputMove.substring(5)) - 1;
+        int toX  = Integer.parseInt(charToInt(inputMove.toUpperCase().charAt(3)));
+        int toY = Integer.parseInt(inputMove.substring(4)) - 1;
         
         Move move = new Move(fromX, fromY, toX, toY);
 
+        return move;
     }
 
     public String charToInt(char c) {
