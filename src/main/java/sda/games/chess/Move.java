@@ -18,37 +18,37 @@ public class Move {
 
     public Move(String userCordinatesInput) {
         this.fromX = Integer.parseInt(charToInt(userCordinatesInput.toUpperCase().charAt(0)));
-        this.fromY = Integer.parseInt(userCordinatesInput.substring(1, 2)) - 1;
+        this.fromY = Integer.parseInt(userCordinatesInput.substring(1, 2));
         this.toX  = Integer.parseInt(charToInt(userCordinatesInput.toUpperCase().charAt(3)));
-        this.toY = Integer.parseInt(userCordinatesInput.substring(4)) - 1;
+        this.toY = Integer.parseInt(userCordinatesInput.substring(4));
     }
 
     private String charToInt(char c) {
-        String number = "-1";
+        String number = "0";
         switch (c) {
             case 'A':
-                number = "0";
-                break;
-            case 'B':
                 number = "1";
                 break;
-            case 'C':
+            case 'B':
                 number = "2";
                 break;
-            case 'D':
+            case 'C':
                 number = "3";
                 break;
-            case 'E':
+            case 'D':
                 number = "4";
                 break;
-            case 'F':
+            case 'E':
                 number = "5";
                 break;
-            case 'G':
+            case 'F':
                 number = "6";
                 break;
-            case 'H':
+            case 'G':
                 number = "7";
+                break;
+            case 'H':
+                number = "8";
                 break;
             default:
                 break;
