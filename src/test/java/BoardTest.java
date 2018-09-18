@@ -2,6 +2,9 @@ import org.junit.Before;
 import org.junit.Test;
 import sda.games.chess.Board;
 import sda.games.chess.Move;
+import sda.games.chess.Queen;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class BoardTest {
 
@@ -16,6 +19,8 @@ public class BoardTest {
 
     @Test
     public void shouldNotMoveIfThereIsPawnInTheWay(){
+      move = new Move("a4>c4");
+      assertThat(board.makeAMove(move)).isFalse();
 
 
 
