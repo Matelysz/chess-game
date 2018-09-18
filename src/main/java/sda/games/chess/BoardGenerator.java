@@ -45,5 +45,8 @@ public class BoardGenerator {
        spots[8][7].setFigure(new Pawn());
        spots[8][8].setFigure(new Pawn());
         return spots;
+
+        //może tu jakąs petle zapodać do wypełnienia np pionkami?
+       // resztę pól uzupełnic true (isEmpty)
     }
 }

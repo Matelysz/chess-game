@@ -9,7 +9,7 @@ public class BoardTest {
   Move move;
     @Test
     public void shouldNotMoveOutOfTheRangeOfBoard(){
-        move = new Move("a2>i9")
+        move = new Move("a2>i9");
         board.makeAMove(move);
 
     }
