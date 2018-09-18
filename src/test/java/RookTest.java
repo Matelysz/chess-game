@@ -74,4 +74,5 @@ public class RookTest {
         Move move = new Move("d2>d2");
         assertThat(rook.isMoveValid(move)).isFalse();
     }
+
 }

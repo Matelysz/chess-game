@@ -12,7 +12,8 @@ public class Bishop extends Figure{
         if (fromX-toX == fromY-toY || fromX-toX==-(fromY-toY) ){
             return true;
 
-        } else return false;
+        } else
+            return false;
 
 
     }
