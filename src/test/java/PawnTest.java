@@ -8,11 +8,17 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class PawnTest {
 
   @Test
-    public void ShouldReturnFalse(){
+    public void ShouldToGoForwardForWhite(){
       Pawn pawn = new Pawn();
       Move move = new Move(0,0,0,1);
       assertThat(pawn.isMoveValid(move)).isFalse();
-      System.out.println(move);
+  }
+
+  @Test
+   public void ShouldToGoForwardForBlack(){
+    Pawn pawn = new Pawn();
+    Move move = new Move(0,0,0,1);
+    assertThat(pawn.isMoveValid(move)).isFalse();
   }
 
 }
