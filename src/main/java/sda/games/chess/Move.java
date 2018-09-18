@@ -16,11 +16,44 @@ public class Move {
     public int getToY() {return toY;}
     public void setToY(int toY) {this.toY = toY;}
 
-    public Move(int fromX, int fromY, int toX, int toY) {
-        this.fromX = fromX;
-        this.fromY = fromY;
-        this.toX = toX;
-        this.toY = toY;
+    public Move(String userCordinatesInput) {
+        this.fromX = Integer.parseInt(charToInt(userCordinatesInput.toUpperCase().charAt(0)));
+        this.fromY = Integer.parseInt(userCordinatesInput.substring(1, 2));
+        this.toX  = Integer.parseInt(charToInt(userCordinatesInput.toUpperCase().charAt(3)));
+        this.toY = Integer.parseInt(userCordinatesInput.substring(4));
+    }
+
+    private String charToInt(char c) {
+        String number = "0";
+        switch (c) {
+            case 'A':
+                number = "1";
+                break;
+            case 'B':
+                number = "2";
+                break;
+            case 'C':
+                number = "3";
+                break;
+            case 'D':
+                number = "4";
+                break;
+            case 'E':
+                number = "5";
+                break;
+            case 'F':
+                number = "6";
+                break;
+            case 'G':
+                number = "7";
+                break;
+            case 'H':
+                number = "8";
+                break;
+            default:
+                break;
+        }
+        return number;
     }
 
     @Override

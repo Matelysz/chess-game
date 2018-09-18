@@ -1,10 +1,17 @@
 package sda.games.chess;
 
 public class Spot {
-    Figure figure;
-    Board board;
 
-    boolean isEmpty;
+    private Figure figure;
+
+    public Figure getFigure() {
+        return figure;
+    }
+
+    public void setFigure(Figure figure) {
+        this.figure = figure;
+    }
+
 
 
 }
