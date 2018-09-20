@@ -35,7 +35,7 @@ public class Board {
 
     private boolean checkIfSpotsInAWayAreEmpty(int fromX, int fromY, int distanceX, int distanceY) {
         boolean empty = false;
-        if (Math.abs(distanceY) == Math.abs(distanceX)) {
+        if (Math.abs(distanceY) == Math.abs(distanceX)){  // jesli ten warunek spełniony to figura idzie po skosie
 
             for (int i = fromX; i < Math.abs(distanceX); ) {
                 int j = fromY;
@@ -80,15 +80,15 @@ public class Board {
 
         }
 
-        if (Math.abs(distanceY) > 0 && Math.abs(distanceX) == 0) {
+        if (Math.abs(distanceY) > 0 && Math.abs(distanceX) == 0) { // jeśli ten warunek spoeniony to figura idzie góra dół
             for (int i = fromY; i < Math.abs(distanceY); ) {
                 int j = fromX;
-                if (distanceY > 0) {
+                if (distanceY > 0) { // jeśli idzie w góre
                     i++;
                     if (spots[j][i].isEmpty()) {
                         empty = true;
 
-                    } else if (distanceY < 0) {
+                    } else if (distanceY < 0) { // jeśli idzie w dół
                         i--;
                         if (spots[j][i].isEmpty()) {
                             empty = true;
@@ -99,17 +99,17 @@ public class Board {
             }
         }
 
-        if (Math.abs(distanceX) > 0 && Math.abs(distanceY) == 0) {
+        if (Math.abs(distanceX) > 0 && Math.abs(distanceY) == 0) { // jeśli ten warunek spełniony to figura idzie na boki
             for (int i = fromX; i < Math.abs(distanceX); ) {
                 int j = fromY;
                 if (distanceX > 0) {
                     i++;
-                    if (spots[i][j].isEmpty()) {
+                    if (spots[i][j].isEmpty()) { // idzie w prawo
                         empty = true;
 
                     } else if (distanceX < 0) {
                         i--;
-                        if (spots[i][j].isEmpty()) {
+                        if (spots[i][j].isEmpty()) { // idzie w lewo
                             empty = true;
 
                         }
