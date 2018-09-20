@@ -18,4 +18,8 @@ public class Player {
         return new Move(userCordinatesInput);
     }
 
+    public Color setColor(Color color) {
+        return color;
+    }
+
 }
