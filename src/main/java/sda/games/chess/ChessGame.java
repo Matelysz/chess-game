@@ -20,8 +20,8 @@ public class ChessGame {
 
     public void play(){
 
-        Player player1 = new Player(WHITE);
-        Player player2 = new Player(BLACK);
+        player1 = new Player(WHITE);
+        player2 = new Player(BLACK);
         currentPlayer = player1;
         Board board = new Board();
 
@@ -40,16 +40,17 @@ public class ChessGame {
            if(board.makeAMove(move, currentPlayer)==false){
                System.out.println("RUCH Z DUPY, SPRÓBUJ JESZCZE RAZ");
            } else {
-               System.out.println("BOSKI RUCH, CO DALEJ?");
+               System.out.println("BOSKI RUCH, kolejny gracz");
+               changeCurrentPlayer(currentPlayer);
            }
         } while (board.getGameState().equals(GameState.INPROGRESS));
     }
 
-    public Player changeCurrentPlayer(Player currentPlayer) {
-        if (currentPlayer == player1) {
+    public Player changeCurrentPlayer(Player playerWhoMadeAMove) {
+        if (playerWhoMadeAMove.equals(player1)) {
             currentPlayer = player2;
         } else {
-            currentPlayer = player1;
+           currentPlayer = player1;
         }
         return currentPlayer;
     }

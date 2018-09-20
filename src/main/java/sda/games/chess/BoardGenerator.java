@@ -41,12 +41,7 @@ public class BoardGenerator {
             spots[i][2].setFigure(blackPawn);
         }
 
-        //emptySlots
-        for (int i = 3; i < 6; i++) {
-            for (int j = 1; j < 8; j++) {
-                spots[j][i].setEmpty(true);
-            }
-        }
+
 
         //white
         for (int i = 1; i < 8; i++) {
@@ -60,6 +55,15 @@ public class BoardGenerator {
         spots[6][8].setFigure(whiteBishop);
         spots[7][8].setFigure(whiteKnight);
         spots[8][8].setFigure(whiteRook);
+
+        //emptySlots
+        for (int i = 1; i < 8; i++) {
+            for (int j = 1; j < 8; j++) {
+                if (spots[i][j].getFigure()==null) {
+                    spots[i][j].setEmpty(true);
+                }
+            }
+        }
 
         return spots;
 
