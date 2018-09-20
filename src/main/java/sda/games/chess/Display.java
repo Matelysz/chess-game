@@ -111,13 +111,13 @@ public class Display {
             for (int j = 1; j < 8; j++) {
                 if (i == 1 && j == 5) {
                     figure = spots[i][j].getFigure();
-                    System.out.println("spots[" + i + "][" + j + "] = " + figure);
+                   // System.out.println("spots[" + i + "][" + j + "] = " + figure);
                 }
             }
         }
-        System.out.println(spots[1][5].getFigure());
-        System.out.println("NEW RULE");
-        System.out.println(blackKingAdress);
+     //   System.out.println(spots[1][5].getFigure());
+       // System.out.println("NEW RULE");
+     //   System.out.println(blackKingAdress);
     }
 
 

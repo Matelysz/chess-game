@@ -30,38 +30,40 @@ public class BoardGenerator {
 
         //black
         spots[1][1].setFigure(blackRook);
-        spots[1][2].setFigure(blackKnight);
-        spots[1][3].setFigure(blackBishop);
-        spots[1][4].setFigure(blackQueen);
-        spots[1][5].setFigure(blackKing);
-        spots[1][6].setFigure(blackBishop);
-        spots[1][7].setFigure(blackKnight);
-        spots[1][8].setFigure(blackRook);
+        spots[2][1].setFigure(blackKnight);
+        spots[3][1].setFigure(blackBishop);
+        spots[4][1].setFigure(blackQueen);
+        spots[5][1].setFigure(blackKing);
+        spots[6][1].setFigure(blackBishop);
+        spots[7][1].setFigure(blackKnight);
+        spots[8][1].setFigure(blackRook);
         for (int i = 1; i < 8; i++) {
-            spots[2][i].setFigure(blackPawn);
+            spots[i][2].setFigure(blackPawn);
         }
 
-        //emptySlots
-        for (int i = 3; i < 6; i++) {
-            for (int j = 1; j < 8; j++) {
-                spots[i][j].setEmpty(true);
-            }
-        }
 
-        spots[6][1].setEmpty(true);
 
         //white
         for (int i = 1; i < 8; i++) {
-            spots[7][i].setFigure(whitePawn);
+            spots[i][7].setFigure(whitePawn);
         }
-        spots[8][1].setFigure(whiteRook);
-        spots[8][2].setFigure(whiteKnight);
-        spots[8][3].setFigure(whiteBishop);
-        spots[8][4].setFigure(whiteQueen);
-        spots[8][5].setFigure(whiteKing);
-        spots[8][6].setFigure(whiteBishop);
-        spots[8][7].setFigure(whiteKnight);
+        spots[1][8].setFigure(whiteRook);
+        spots[2][8].setFigure(whiteKnight);
+        spots[3][8].setFigure(whiteBishop);
+        spots[4][8].setFigure(whiteQueen);
+        spots[5][8].setFigure(whiteKing);
+        spots[6][8].setFigure(whiteBishop);
+        spots[7][8].setFigure(whiteKnight);
         spots[8][8].setFigure(whiteRook);
+
+        //emptySlots
+        for (int i = 1; i < 8; i++) {
+            for (int j = 1; j < 8; j++) {
+                if (spots[i][j].getFigure()==null) {
+                    spots[i][j].setEmpty(true);
+                }
+            }
+        }
 
         return spots;
 
