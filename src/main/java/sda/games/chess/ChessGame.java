@@ -2,6 +2,9 @@ package sda.games.chess;
 
 import java.util.Scanner;
 
+import static sda.games.chess.Color.BLACK;
+import static sda.games.chess.Color.WHITE;
+
 public class ChessGame {
 
     private Player currentPlayer;
@@ -11,26 +14,32 @@ public class ChessGame {
     private Spot[][] spots;
 
 
+    public Player getCurrentPlayer() {
+        return currentPlayer;
+    }
+
     public void play(){
 
-        Player player1 = new Player();
-        Player player2 = new Player();
-        player1.setColor(Color.WHITE);
-        player2.setColor(Color.BLACK);
+        Player player1 = new Player(WHITE);
+        Player player2 = new Player(BLACK);
         currentPlayer = player1;
+        Board board = new Board();
 
-        BoardGenerator boardGenerator = new BoardGenerator();
-        spots = boardGenerator.generateBoard();
+//        BoardGenerator boardGenerator = new BoardGenerator();
+//        spots = boardGenerator.generateBoard();
 
         Scanner scanner = new Scanner(System.in);
 
         Display display = new Display();
 
         do {
-            display.printDisplay(spots);
+            display.printDisplay(board.spots);
+
 
             Move move = currentPlayer.getMove();
-            board.makeAMove(move);
+           if(board.makeAMove(move, currentPlayer)==false){
+               System.out.println("RUCH Z DUPY, SPRÓBUJ JESZCZE RAZ");
+           }
         } while (board.getGameState().equals(GameState.INPROGRESS));
     }
 

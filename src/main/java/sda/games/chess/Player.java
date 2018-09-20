@@ -4,6 +4,12 @@ import java.util.Scanner;
 
 public class Player {
 
+    private Color color;
+
+    public Player(Color color) {
+        this.color = color;
+    }
+
     public Move getMove() {
 
         Scanner scanner = new Scanner(System.in);
@@ -18,8 +24,12 @@ public class Player {
         return new Move(userCordinatesInput);
     }
 
-    public Color setColor(Color color) {
-        return color;
+    public void setColor(Color color) {
+    }
+
+    public Color getColor(){
+        return this.color;
+
     }
 
 }

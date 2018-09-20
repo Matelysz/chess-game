@@ -2,6 +2,10 @@ package sda.games.chess;
 
 public class Knight extends Figure {
 
+    public Knight(Color color) {
+        super(color);
+    }
+
     @Override
     public boolean isMoveValid(Move move) {
 

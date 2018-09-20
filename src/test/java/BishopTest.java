@@ -1,11 +1,12 @@
 import org.junit.Test;
 import sda.games.chess.Bishop;
+import sda.games.chess.Color;
 import sda.games.chess.Move;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class BishopTest {
-Bishop bishop = new Bishop();
+Bishop bishop = new Bishop(Color.WHITE);
 @Test
     public void shouldNotAllowMovingForward(){
     Move move = new Move("b2>b4");

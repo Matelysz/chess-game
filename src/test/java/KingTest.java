@@ -6,9 +6,10 @@ import sda.games.chess.Move;
 import sda.games.chess.Player;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static sda.games.chess.Color.WHITE;
 
 public class KingTest {
- private King king =new King();
+ private King king =new King(WHITE);
 
 
 

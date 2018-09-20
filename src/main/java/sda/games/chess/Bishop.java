@@ -2,6 +2,10 @@ package sda.games.chess;
 
 public class Bishop extends Figure{
 
+    public Bishop(Color color) {
+        super(color);
+    }
+
     @Override
     public boolean isMoveValid(Move move){
         int fromX = move.getFromX();

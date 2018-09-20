@@ -3,9 +3,10 @@ import sda.games.chess.Move;
 import sda.games.chess.Queen;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static sda.games.chess.Color.WHITE;
 
 public class QueenTest {
-    Queen queen = new Queen();
+    Queen queen = new Queen(WHITE);
 
     @Test
     public void shouldNotAllowMovingLikeKnightDown(){
