@@ -1,6 +1,7 @@
 import org.junit.Test;
 import sda.games.chess.Move;
 
+import static org.junit.Assert.assertEquals;
 
 
 public class MoveTest {
