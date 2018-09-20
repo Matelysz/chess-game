@@ -2,6 +2,10 @@ package sda.games.chess;
 
 public class Queen extends Figure {
 
+    public Queen(Color color) {
+        super(color);
+    }
+
     @Override
     public boolean isMoveValid(Move move) {
         int fromX = move.getFromX();

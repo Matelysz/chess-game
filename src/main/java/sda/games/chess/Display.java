@@ -1,5 +1,7 @@
 package sda.games.chess;
 
+import static sda.games.chess.Color.BLACK;
+
 public class Display {
 
 //    white chess king     ♔    U+2654
@@ -142,12 +144,9 @@ public class Display {
     }
 
     public char[][] fillEmptyBoardWithFigures(Spot[][] spots, char[][] emptyBoard) {
-        Rook blackRook = new Rook();
-        blackRook.setColor(Color.BLACK);
-        Knight blackKnight = new Knight();
-        blackKnight.setColor(Color.BLACK);
-        Bishop blackBishop = new Bishop();
-        blackBishop.setColor(Color.BLACK);
+        Rook blackRook = new Rook(BLACK);
+        Knight blackKnight = new Knight(BLACK);
+        Bishop blackBishop = new Bishop(BLACK);
         for (int i = 0; i < emptyBoard.length; i++) {
             for (int j = 1; j < emptyBoard.length; j++) {
                 if (spots[i][j].getFigure() == blackBishop) {

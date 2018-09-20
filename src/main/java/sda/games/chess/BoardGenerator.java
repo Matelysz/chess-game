@@ -1,5 +1,8 @@
 package sda.games.chess;
 
+import static sda.games.chess.Color.BLACK;
+import static sda.games.chess.Color.WHITE;
+
 public class BoardGenerator {
 
     public Spot[][] generateBoard(){
@@ -11,30 +14,19 @@ public class BoardGenerator {
             }
         }
 
-        King whiteKing = new King();
-        King blackKing = new King();
-        whiteKing.setColor(Color.WHITE);
-        blackKing.setColor(Color.BLACK);
-        Queen whiteQueen = new Queen();
-        Queen blackQueen = new Queen();
-        whiteQueen.setColor(Color.WHITE);
-        blackQueen.setColor(Color.BLACK);
-        Rook whiteRook = new Rook();
-        Rook blackRook = new Rook();
-        whiteRook.setColor(Color.WHITE);
-        blackRook.setColor(Color.BLACK);
-        Bishop whiteBishop = new Bishop();
-        Bishop blackBishop = new Bishop();
-        whiteBishop.setColor(Color.WHITE);
-        blackBishop.setColor(Color.BLACK);
-        Knight whiteKnight = new Knight();
-        Knight blackKnight = new Knight();
-        whiteKnight.setColor(Color.WHITE);
-        blackKnight.setColor(Color.BLACK);
-        Pawn whitePawn = new Pawn();
-        Pawn blackPawn = new Pawn();
-        whitePawn.setColor(Color.WHITE);
-        blackPawn.setColor(Color.BLACK);
+        King whiteKing = new King(WHITE);
+        King blackKing = new King(BLACK);
+        Queen whiteQueen = new Queen(WHITE);
+        Queen blackQueen = new Queen(BLACK);
+        Rook whiteRook = new Rook(WHITE);
+        Rook blackRook = new Rook(BLACK);
+        Bishop whiteBishop = new Bishop(WHITE);
+        Bishop blackBishop = new Bishop(BLACK);
+        Knight whiteKnight = new Knight(WHITE);
+        Knight blackKnight = new Knight(BLACK);
+        Pawn whitePawn = new Pawn(WHITE);
+        Pawn blackPawn = new Pawn(BLACK);
+
 
         //black
         spots[1][1].setFigure(blackRook);
@@ -52,7 +44,7 @@ public class BoardGenerator {
         //emptySlots
         for (int i = 3; i < 6; i++) {
             for (int j = 1; j < 8; j++) {
-                spots[i][j].isEmpty();
+                spots[i][j].setEmpty(true);
             }
         }
 

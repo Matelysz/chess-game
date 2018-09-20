@@ -7,7 +7,9 @@ public class Board {
     private GameState gameState;
 
 
-    public boolean makeAMove(Move move) {
+
+
+    public boolean makeAMove(Move move, Player currentPlayer) {
         int fromX = move.getFromX();
         int fromY = move.getFromY();
         int toX = move.getToX();
@@ -17,14 +19,18 @@ public class Board {
         int distanceY = toY - fromY;
 
         if (!spots[fromX][fromY].isEmpty()) {// czy nie ruszam z pustego pola
+            if(spots[fromX][fromY].getFigure().getColor()==currentPlayer.getColor()){//czy ruszam swoim
             if (spots[fromX][fromY].getFigure().isMoveValid(move)) { // czy ruch jest w zakresie ruchów figury
-                if (spots[toX][toY].isEmpty()) { // czy miejsce docelowe jest puste
+                if ((spots[toX][toY].isEmpty()) || (spots[toX][toY].getFigure().getColor() != currentPlayer.getColor())){
+                    // czy miejsce docelowe jest puste lub ruszam na zajęte ale tylko przez wroga miejsce
                     if (checkIfSpotsInAWayAreEmpty(fromX, fromY, distanceX, distanceY)) { // czy nie ma nic po drodze
                         spots[toX][toY].setFigure(spots[fromX][fromY].getFigure());//ustawiam na docelowym miejscu figurę
-                        spots[fromX][fromY].setEmpty(true);
-                        return true;// zeruje jej poprzednie miejsce na empty
+                        spots[fromX][fromY].setEmpty(true);// zeruje jej poprzednie miejsce na empty
+                        return true;  // poprawnie wykonany ruch zwraca true
                     }
 
+
+                }
                 }
             }
 
@@ -140,7 +146,6 @@ public class Board {
         BoardGenerator boardGenerator = new BoardGenerator();
         this.spots = boardGenerator.generateBoard();
         this.gameState = GameState.INPROGRESS;
-        this.spots = boardGenerator.generateBoard();
     }
 
     public GameState getGameState() {
