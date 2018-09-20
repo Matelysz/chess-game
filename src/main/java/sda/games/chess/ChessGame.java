@@ -39,6 +39,8 @@ public class ChessGame {
             Move move = currentPlayer.getMove();
            if(board.makeAMove(move, currentPlayer)==false){
                System.out.println("RUCH Z DUPY, SPRÓBUJ JESZCZE RAZ");
+           } else {
+               System.out.println("BOSKI RUCH, CO DALEJ?");
            }
         } while (board.getGameState().equals(GameState.INPROGRESS));
     }

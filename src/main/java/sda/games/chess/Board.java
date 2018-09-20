@@ -41,6 +41,9 @@ public class Board {
 
     private boolean checkIfSpotsInAWayAreEmpty(int fromX, int fromY, int distanceX, int distanceY) {
         boolean empty = false;
+        if(spots[fromX][fromY].getFigure() instanceof Knight){
+            empty=true;
+        }
         if (Math.abs(distanceY) == Math.abs(distanceX)){  // jesli ten warunek spełniony to figura idzie po skosie
 
             for (int i = fromX; i < Math.abs(distanceX); ) {
