@@ -25,7 +25,9 @@ public class Board {
                     // czy miejsce docelowe jest puste lub ruszam na zajęte ale tylko przez wroga miejsce
                     if (checkIfSpotsInAWayAreEmpty(fromX, fromY, distanceX, distanceY)) { // czy nie ma nic po drodze
                         spots[toX][toY].setFigure(spots[fromX][fromY].getFigure());//ustawiam na docelowym miejscu figurę
+                        spots[toX][toY].setEmpty(false);//teraz to pole nie jest empty
                         spots[fromX][fromY].setEmpty(true);// zeruje jej poprzednie miejsce na empty
+                        spots[fromX][fromY].setFigure(null);//i zeruje figure na nulla
                         return true;  // poprawnie wykonany ruch zwraca true
                     }
 
