@@ -27,7 +27,6 @@ public class BoardGenerator {
         Pawn whitePawn = new Pawn(WHITE);
         Pawn blackPawn = new Pawn(BLACK);
 
-
         //black
         spots[1][1].setFigure(blackRook);
         spots[2][1].setFigure(blackKnight);
@@ -37,14 +36,12 @@ public class BoardGenerator {
         spots[6][1].setFigure(blackBishop);
         spots[7][1].setFigure(blackKnight);
         spots[8][1].setFigure(blackRook);
-        for (int i = 1; i < 8; i++) {
+        for (int i = 1; i <= 8; i++) {
             spots[i][2].setFigure(blackPawn);
         }
 
-
-
         //white
-        for (int i = 1; i < 8; i++) {
+        for (int i = 1; i <= 8; i++) {
             spots[i][7].setFigure(whitePawn);
         }
         spots[1][8].setFigure(whiteRook);

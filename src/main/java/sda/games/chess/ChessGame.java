@@ -25,12 +25,8 @@ public class ChessGame {
         currentPlayer = player1;
         Board board = new Board();
 
-//        BoardGenerator boardGenerator = new BoardGenerator();
-//        spots = boardGenerator.generateBoard();
-
-        Scanner scanner = new Scanner(System.in);
-
         Display display = new Display();
+        display.main(board.spots); // to tutaj musi być, żeby Display wgl działał
 
         do {
             display.printDisplay(board.spots);
