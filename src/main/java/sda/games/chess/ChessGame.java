@@ -31,6 +31,7 @@ public class ChessGame {
         Scanner scanner = new Scanner(System.in);
 
         Display display = new Display();
+        display.main(board.spots);
 
         do {
             display.printDisplay(board.spots);
@@ -40,8 +41,14 @@ public class ChessGame {
            if(board.makeAMove(move, currentPlayer)==false){
                System.out.println("RUCH Z DUPY, SPRÓBUJ JESZCZE RAZ");
            } else {
-               System.out.println("BOSKI RUCH, kolejny gracz");
+               System.out.println("BOSKI RUCH");
                changeCurrentPlayer(currentPlayer);
+               if (currentPlayer.equals(WHITE)){
+                   System.out.println("Ruch białego gracza");
+               } else
+               {
+                   System.out.println("Ruch czarnego gracza");
+               }
            }
         } while (board.getGameState().equals(GameState.INPROGRESS));
     }
