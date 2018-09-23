@@ -28,6 +28,7 @@ public class ChessGame {
         Display display = new Display();
         display.main(board.spots); // to tutaj musi być, żeby Display wgl działał
 
+
         do {
             display.printDisplay(board.spots);
 

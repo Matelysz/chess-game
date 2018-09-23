@@ -115,12 +115,9 @@ public class Display {
     public char[][] generateEmpltyBoardToPrint() {
         //white square - ■ u25A0
         char[][] emptyBoard = new char[9][9];
-        for (int i = 1; i < 9; i = i + 2) {
-            for (int j = 1; j < 9; j = j + 2) {
+        for (int i = 1; i <= 8; i ++) {
+            for (int j = 1; j <= 8; j++) {
                 emptyBoard[i][j] = '\u25A0';
-                emptyBoard[i - 1][j] = ' ';
-                emptyBoard[i - 1][j - 1] = '\u25A0';
-                emptyBoard[i][j - 1] = ' ';
             }
         }
         return emptyBoard;

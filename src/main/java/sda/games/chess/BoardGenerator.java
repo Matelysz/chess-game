@@ -40,6 +40,7 @@ public class BoardGenerator {
             spots[i][2].setFigure(blackPawn);
         }
 
+
         //white
         for (int i = 1; i <= 8; i++) {
             spots[i][7].setFigure(whitePawn);
