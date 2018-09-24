@@ -5,13 +5,14 @@ import sda.games.chess.Move;
 import sda.games.chess.Rook;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static sda.games.chess.Color.WHITE;
 
 public class RookTest {
 
     Rook rook;
     @Before
     public void createRook(){
-        rook = new Rook();
+        rook = new Rook(WHITE);
     }
 
 
