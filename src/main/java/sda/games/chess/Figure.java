@@ -2,6 +2,21 @@ package sda.games.chess;
 
 public abstract class Figure  {
 
-    public abstract boolean isMoveValid();
+    private Color color;
+
+    public Figure(Color color) {
+        this.color = color;
+    }
+
+    public abstract boolean isMoveValid(Move move);
+
+    public void setColor(Color color) {
+    }
+
+    public Color getColor(){
+
+        return this.color;
+
+    }
 
 }
