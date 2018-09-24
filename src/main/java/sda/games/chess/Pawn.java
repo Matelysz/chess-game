@@ -1,31 +1,26 @@
 package sda.games.chess;
-
-import static sda.games.chess.Color.Black;
-import static sda.games.chess.Color.White;
-
 public class Pawn extends Figure {
-
+    public Pawn(Color color) {
+        super(color);
+    }
+    public Spot[][] spots;
     @Override
     public boolean isMoveValid(Move move) {
-
-        Player player1 = new Player();
-        Player player2 = new Player();
-
-
+//        Pawn pawnW = new Pawn(Color.WHITE);
+//        Pawn pawnB = new Pawn(Color.BLACK);
         int fromX = move.getFromX();
         int fromY = move.getFromY();
         int toX = move.getToX();
         int toY = move.getToY();
-
-
-        if(currentPlayer == Player1){
-            if (toY - fromY != 1 || (toY - fromY != 1 && toX - fromY != 1) && fromX - toX != 1) {
-                return false;
-            }
-
-            return true;
+        if (toY - fromY != 1 && toY - fromY != -1) {
+            return false;
         }
+        if ((toY - fromY != 1 && toY - fromY != -1) && toX - fromX != 1) {
+            return false;
+        }
+        if ((toY - fromY != 1 && toY - fromY != -1) && toX - fromX != -1) {
+            return false;
+        }
+        return true;
     }
 }
-
-
