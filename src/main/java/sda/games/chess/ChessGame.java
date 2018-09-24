@@ -20,8 +20,8 @@ public class ChessGame {
 
     public void play(){
 
-        Player player1 = new Player(WHITE);
-        Player player2 = new Player(BLACK);
+        player1 = new Player(WHITE);
+        player2 = new Player(BLACK);
         currentPlayer = player1;
         Board board = new Board();
 
@@ -31,6 +31,7 @@ public class ChessGame {
         Scanner scanner = new Scanner(System.in);
 
         Display display = new Display();
+        display.main(board.spots);
 
         do {
             display.printDisplay(board.spots);
@@ -39,15 +40,24 @@ public class ChessGame {
             Move move = currentPlayer.getMove();
            if(board.makeAMove(move, currentPlayer)==false){
                System.out.println("RUCH Z DUPY, SPRÓBUJ JESZCZE RAZ");
+           } else {
+               System.out.println("BOSKI RUCH");
+               changeCurrentPlayer(currentPlayer);
+               if (currentPlayer.equals(WHITE)){
+                   System.out.println("Ruch białego gracza");
+               } else
+               {
+                   System.out.println("Ruch czarnego gracza");
+               }
            }
         } while (board.getGameState().equals(GameState.INPROGRESS));
     }
 
-    public Player changeCurrentPlayer(Player currentPlayer) {
-        if (currentPlayer == player1) {
+    public Player changeCurrentPlayer(Player playerWhoMadeAMove) {
+        if (playerWhoMadeAMove.equals(player1)) {
             currentPlayer = player2;
         } else {
-            currentPlayer = player1;
+           currentPlayer = player1;
         }
         return currentPlayer;
     }

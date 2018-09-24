@@ -18,6 +18,7 @@ public class Board {
         int distanceX = toX - fromX;
         int distanceY = toY - fromY;
 
+
         if (!spots[fromX][fromY].isEmpty()) {// czy nie ruszam z pustego pola
             if(spots[fromX][fromY].getFigure().getColor()==currentPlayer.getColor()){//czy ruszam swoim
             if (spots[fromX][fromY].getFigure().isMoveValid(move)) { // czy ruch jest w zakresie ruchów figury
@@ -25,7 +26,9 @@ public class Board {
                     // czy miejsce docelowe jest puste lub ruszam na zajęte ale tylko przez wroga miejsce
                     if (checkIfSpotsInAWayAreEmpty(fromX, fromY, distanceX, distanceY)) { // czy nie ma nic po drodze
                         spots[toX][toY].setFigure(spots[fromX][fromY].getFigure());//ustawiam na docelowym miejscu figurę
+                        spots[toX][toY].setEmpty(false);//teraz to pole nie jest empty
                         spots[fromX][fromY].setEmpty(true);// zeruje jej poprzednie miejsce na empty
+                        spots[fromX][fromY].setFigure(null);//i zeruje figure na nulla
                         return true;  // poprawnie wykonany ruch zwraca true
                     }
 
@@ -41,40 +44,47 @@ public class Board {
 
     private boolean checkIfSpotsInAWayAreEmpty(int fromX, int fromY, int distanceX, int distanceY) {
         boolean empty = false;
-        if (Math.abs(distanceY) == Math.abs(distanceX)){  // jesli ten warunek spełniony to figura idzie po skosie
 
-            for (int i = fromX; i < Math.abs(distanceX); ) {
-                int j = fromY;
+        int absDistanceX = Math.abs(distanceX);
+        int absDistanceY = Math.abs(distanceY);
+
+        if(spots[fromX][fromY].getFigure() instanceof Knight){
+            empty=true;
+        }
+        if (absDistanceY == absDistanceX) {  // jesli ten warunek spełniony to figura idzie po skosie
+
+            for (int i = 0; i <= absDistanceX; i++) {
+
                 if (distanceX > 0 && distanceY > 0) {
-                    i++;
-                    j++;
+                    fromX++;
+                    fromY++;
 
-                    if (spots[i][j].isEmpty()) {
+                    if (spots[fromX][fromY].isEmpty()) {
                         empty = true;
 
                     }
                 } else if (distanceX < 0 && distanceY > 0) {
-                    i--;
-                    j++;
+                    fromX--;
+                    fromY++;
 
-                    if (spots[i][j].isEmpty()) {
+                    if (spots[fromX][fromY].isEmpty()) {
                         empty = true;
 
 
                     }
                 } else if (distanceX < 0 && distanceY < 0) {
-                    i--;
-                    j--;
-                    if (spots[i][j].isEmpty()) {
+                    fromX--;
+                    fromY--;
+                    if (spots[fromX][fromY].isEmpty()) {
                         empty = true;
 
                     }
 
                 } else if (distanceX > 0 && distanceY < 0) {
-                    i++;
-                    j--;
+                    fromX++;
+                    fromY--;
 
-                    if (spots[i][j].isEmpty()) {
+                    if (spots[fromX][fromY].isEmpty()) {
                         empty = true;
 
 
@@ -86,40 +96,42 @@ public class Board {
 
         }
 
-        if (Math.abs(distanceY) > 0 && Math.abs(distanceX) == 0) { // jeśli ten warunek spoeniony to figura idzie góra dół
-            for (int i = fromY; i < Math.abs(distanceY); ) {
-                int j = fromX;
-                if (distanceY > 0) { // jeśli idzie w góre
-                    i++;
-                    if (spots[j][i].isEmpty()) {
+        if (absDistanceY > 0 && absDistanceX == 0) { // jeśli ten warunek spoeniony to figura idzie góra dół
+            for (int i = 0; i <= absDistanceY; i++) {
+
+                if (distanceY < 0) { // jeśli idzie w dół
+                    fromY--;
+                    if (spots[fromX][fromY].isEmpty()) {
                         empty = true;
 
-                    } else if (distanceY < 0) { // jeśli idzie w dół
-                        i--;
-                        if (spots[j][i].isEmpty()) {
-                            empty = true;
-
-                        }
                     }
+                } else if (distanceY > 0) { // jeśli idzie w góre
+                    fromY++;
+                    if (spots[fromX][fromY].isEmpty()) {
+                        empty = true;
+                    }
+
+
                 }
             }
         }
 
-        if (Math.abs(distanceX) > 0 && Math.abs(distanceY) == 0) { // jeśli ten warunek spełniony to figura idzie na boki
-            for (int i = fromX; i < Math.abs(distanceX); ) {
-                int j = fromY;
+        if (absDistanceX > 0 && absDistanceY == 0) { // jeśli ten warunek spełniony to figura idzie na boki
+            for (int i = 0; i <= absDistanceX; i++) {
+
                 if (distanceX > 0) {
-                    i++;
-                    if (spots[i][j].isEmpty()) { // idzie w prawo
+                    fromX++;
+                    if (spots[fromX][fromY].isEmpty()) { // idzie w prawo
                         empty = true;
 
-                    } else if (distanceX < 0) {
-                        i--;
-                        if (spots[i][j].isEmpty()) { // idzie w lewo
+                    }
+                } else if (distanceX < 0) {
+                    fromX--;
+                    if (spots[fromX][fromY].isEmpty()) { // idzie w lewo
                             empty = true;
 
                         }
-                    }
+
                 }
             }
         }
