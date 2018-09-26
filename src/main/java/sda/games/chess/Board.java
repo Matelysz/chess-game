@@ -53,7 +53,7 @@ public class Board {
         }
         if (absDistanceY == absDistanceX) {  // jesli ten warunek spełniony to figura idzie po skosie
 
-            for (int i = 0; i <= absDistanceX; i++) {
+            for (int i = 0; i < absDistanceX; i++) {
 
                 if (distanceX > 0 && distanceY > 0) {
                     fromX++;
@@ -97,7 +97,7 @@ public class Board {
         }
 
         if (absDistanceY > 0 && absDistanceX == 0) { // jeśli ten warunek spoeniony to figura idzie góra dół
-            for (int i = 0; i <= absDistanceY; i++) {
+            for (int i = 0; i < absDistanceY; i++) {
 
                 if (distanceY < 0) { // jeśli idzie w dół
                     fromY--;
@@ -117,7 +117,7 @@ public class Board {
         }
 
         if (absDistanceX > 0 && absDistanceY == 0) { // jeśli ten warunek spełniony to figura idzie na boki
-            for (int i = 0; i <= absDistanceX; i++) {
+            for (int i = 0; i < absDistanceX; i++) {
 
                 if (distanceX > 0) {
                     fromX++;

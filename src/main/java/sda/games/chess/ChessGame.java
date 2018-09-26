@@ -1,5 +1,7 @@
 package sda.games.chess;
 
+import javafx.application.Platform;
+
 import java.util.Scanner;
 
 import static sda.games.chess.Color.BLACK;
@@ -39,15 +41,16 @@ public class ChessGame {
 
             Move move = currentPlayer.getMove();
            if(board.makeAMove(move, currentPlayer)==false){
-               System.out.println("RUCH Z DUPY, SPRÓBUJ JESZCZE RAZ");
+               System.out.println("NIEPOPRAWNIE WPROWADZONY RUCH, SPRÓBUJ JESZCZE RAZ!");
            } else {
-               System.out.println("BOSKI RUCH");
+               System.out.println("");
                changeCurrentPlayer(currentPlayer);
-               if (currentPlayer.equals(WHITE)){
-                   System.out.println("Ruch białego gracza");
-               } else
-               {
-                   System.out.println("Ruch czarnego gracza");
+               if (currentPlayer.equals(player2)){
+                   System.out.println("RUCH GRACZA: PLAYER 1(BIAŁE)");
+               } else {
+                   System.out.println("RUCH GRACZA: PLAYER 2(CZARNE)");
+
+
                }
            }
         } while (board.getGameState().equals(GameState.INPROGRESS));
