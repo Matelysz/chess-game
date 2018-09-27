@@ -3,6 +3,8 @@ package sda.games.chess;
 public abstract class Figure  {
 
     private Color color;
+    private Spot[][] spots;
+
 
     public Figure(Color color) {
         this.color = color;
