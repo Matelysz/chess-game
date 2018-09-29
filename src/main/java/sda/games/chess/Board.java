@@ -149,4 +149,8 @@ public class Board {
     public GameState getGameState() {
         return gameState;
     }
+
+    public Spot[][] getSpots() {
+        return spots;
+    }
 }
