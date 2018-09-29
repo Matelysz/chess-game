@@ -17,13 +17,12 @@ public class Board {
         int distanceY = toY - fromY;
 
 
-        if (!spots[fromX][fromY].isEmpty()) {// czy nie ruszam z pustego pola
-            if(spots[fromX][fromY].getFigure().getColor()==currentPlayer.getColor()){//czy ruszam swoim
-            if (spots[fromX][fromY].getFigure().isMoveValid(move)) { // czy ruch jest w zakresie ruchów figury
-                if ((spots[toX][toY].isEmpty()) || (spots[toX][toY].getFigure().getColor() != currentPlayer.getColor())){
-                    // czy miejsce docelowe jest puste lub ruszam na zajęte ale tylko przez wroga miejsce
-                    if (checkIfSpotsInAWayAreEmpty(fromX, fromY, distanceX, distanceY)) { // czy nie ma nic po drodze
-                        spots[toX][toY].setFigure(spots[fromX][fromY].getFigure());//ustawiam na docelowym miejscu figurę
+        if (moveNotFromEmptySpot(spots[fromX][fromY])) {
+            if(playerMovesHisOwnFigure(spots[fromX][fromY], currentPlayer)){
+            if (spots[fromX][fromY].getFigure().isMoveValid(move)) {
+                if (isMoveToSpotAllowed(spots [fromX][fromY],spots[toX][toY], currentPlayer, distanceX,distanceY)){
+                    if (checkIfSpotsInAWayAreEmpty(fromX, fromY, distanceX, distanceY)) {
+                        spots[toX][toY].setFigure(spots[fromX][fromY].getFigure());
                         spots[toX][toY].setEmpty(false);//teraz to pole nie jest empty
                         spots[fromX][fromY].setEmpty(true);// zeruje jej poprzednie miejsce na empty
                         spots[fromX][fromY].setFigure(null);//i zeruje figure na nulla
@@ -41,6 +40,35 @@ public class Board {
         return false;
     }
 
+    private boolean isMoveToSpotAllowed(Spot from, Spot destination, Player currentPlayer,int distanceX, int distanceY) {
+        // czy miejsce docelowe jest puste lub ruszam na zajęte ale tylko przez wroga miejsce
+      return (additionalFigureRelatedConditionsAreFulfiled(from, destination, distanceX,distanceY, currentPlayer)) && ((destination.isEmpty()) || (destination.getFigure().getColor() != currentPlayer.getColor()));
+    }
+
+    private boolean additionalFigureRelatedConditionsAreFulfiled(Spot from, Spot destination, int distanceX, int distanceY, Player currentPlayer) {
+        if (from.getFigure() instanceof Pawn) {
+            if (destination.isEmpty()) {
+                if (distanceX != 0 && distanceY != 0) {
+                    return false;
+                }
+
+            } else if (destination.getFigure().getColor() != currentPlayer.getColor()) {
+                if (distanceY != 0 && distanceX == 0) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
+    private boolean playerMovesHisOwnFigure(Spot spot, Player currentPlayer) {
+        return spot.getFigure().getColor()==currentPlayer.getColor();
+    }
+
+    private boolean moveNotFromEmptySpot(Spot spot) {
+        return !spot.isEmpty();
+    }
+
     private void checkEndgameCondition() {
         if (isCheckmate()) {
             this.gameState = GameState.ENDED;
@@ -50,11 +78,11 @@ public class Board {
     }
 
     private boolean isDraw() {
-
+return false;
     }
 
     private boolean isCheckmate() {
-
+return false;
     }
 
 
