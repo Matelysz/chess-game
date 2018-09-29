@@ -1,9 +1,7 @@
 package sda.games.chess;
 
 public class Board {
-   public Spot[][] spots;
-    private boolean isCheckmate;
-    private boolean isDraw;
+    private Spot[][] spots;
     private GameState gameState;
 
 
@@ -29,6 +27,7 @@ public class Board {
                         spots[toX][toY].setEmpty(false);//teraz to pole nie jest empty
                         spots[fromX][fromY].setEmpty(true);// zeruje jej poprzednie miejsce na empty
                         spots[fromX][fromY].setFigure(null);//i zeruje figure na nulla
+                        checkEndgameCondition();
                         return true;  // poprawnie wykonany ruch zwraca true
                     }
 
@@ -41,6 +40,23 @@ public class Board {
         }
         return false;
     }
+
+    private void checkEndgameCondition() {
+        if (isCheckmate()) {
+            this.gameState = GameState.ENDED;
+        } else if (isDraw()) {
+            this.gameState = GameState.DRAW;
+        }
+    }
+
+    private boolean isDraw() {
+
+    }
+
+    private boolean isCheckmate() {
+
+    }
+
 
     private boolean checkIfSpotsInAWayAreEmpty(int fromX, int fromY, int distanceX, int distanceY) {
         boolean empty = false;
