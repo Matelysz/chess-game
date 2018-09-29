@@ -48,12 +48,15 @@ public class Board {
         int absDistanceX = Math.abs(distanceX);
         int absDistanceY = Math.abs(distanceY);
 
+
         if(spots[fromX][fromY].getFigure() instanceof Knight){
             empty=true;
         }
         if (absDistanceY == absDistanceX) {  // jesli ten warunek spełniony to figura idzie po skosie
 
-            for (int i = 0; i <= absDistanceX; i++) {
+
+
+            for (int i = 0; i < absDistanceX; i++) {
 
                 if (distanceX > 0 && distanceY > 0) {
                     fromX++;
@@ -92,12 +95,16 @@ public class Board {
                 }
 
             }
-
+            if (absDistanceX ==1){
+                empty= true;
+            }
 
         }
 
-        if (absDistanceY > 0 && absDistanceX == 0) { // jeśli ten warunek spoeniony to figura idzie góra dół
-            for (int i = 0; i <= absDistanceY; i++) {
+        if (absDistanceY > 0 && absDistanceX == 0) {// jeśli ten warunek spoeniony to figura idzie góra dół
+
+
+            for (int i = 0; i < absDistanceY; i++) {
 
                 if (distanceY < 0) { // jeśli idzie w dół
                     fromY--;
@@ -114,10 +121,13 @@ public class Board {
 
                 }
             }
+            if (absDistanceY == 1){
+                empty= true;
+            }
         }
 
         if (absDistanceX > 0 && absDistanceY == 0) { // jeśli ten warunek spełniony to figura idzie na boki
-            for (int i = 0; i <= absDistanceX; i++) {
+            for (int i = 0; i < absDistanceX; i++) {
 
                 if (distanceX > 0) {
                     fromX++;
@@ -134,25 +144,14 @@ public class Board {
 
                 }
             }
+
+            if (absDistanceX==1){
+                empty = true;
+            }
         }
         return empty;
     }
 
-//
-//
-//        //sprawdzić czy dane pole nie jest puste
-//        // jak coś stoi, to czy ruch ktory chce wykonać jest valid z punktu widzenia figury
-//        //jak jest ok, to - nie może wykraczać poza plansze
-//        // - nie może mieć nic po drodze
-//        // - sprawdzić czy pole jest wolne na ktore chce isć
-//        // - jak wolne to super, staje tam i nara
-//        //- jak zajęte to bije (skoro ruch jest valid to mogę, innym przypadkiem jest pionek)
-//        // - jak pionek  to w pionku musi być implementacja że ruch po skosie jest valid tylko gdy coś na nim stoi == chce bić
-//        // - wszystko to jescze opakować w warunek że mogę ruszyć tylko swoją figurą
-//        // - no i bic nie mogę swoich figur
-//
-//
-//    }
 
     public Board() {
         BoardGenerator boardGenerator = new BoardGenerator();
