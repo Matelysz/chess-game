@@ -25,9 +25,6 @@ public class ChessGame {
         currentPlayer = player1;
         Board board = new Board();
 
-//        BoardGenerator boardGenerator = new BoardGenerator();
-//        spots = boardGenerator.generateBoard();
-
         Scanner scanner = new Scanner(System.in);
 
         Display display = new Display();
@@ -52,6 +49,8 @@ public class ChessGame {
                }
            }
         } while (board.getGameState().equals(GameState.INPROGRESS));
+        if (board.getGameState().equals(GameState.ENDED)) System.out.println("SZACH MAT!! KONIEC GRY");
+        if (board.getGameState().equals(GameState.DRAW)) System.out.println("MAMY REMIS!!");
     }
 
     public Player changeCurrentPlayer(Player playerWhoMadeAMove) {

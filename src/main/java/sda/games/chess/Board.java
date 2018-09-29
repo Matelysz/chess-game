@@ -3,6 +3,7 @@ package sda.games.chess;
 public class Board {
     private Spot[][] spots;
     private GameState gameState;
+    private MoveHistory moveHistory;
 
 
 
@@ -16,7 +17,7 @@ public class Board {
         int distanceX = toX - fromX;
         int distanceY = toY - fromY;
 
-
+        moveHistory.countPiecesBeforeMOve();
         if (!spots[fromX][fromY].isEmpty()) {// czy nie ruszam z pustego pola
             if(spots[fromX][fromY].getFigure().getColor()==currentPlayer.getColor()){//czy ruszam swoim
             if (spots[fromX][fromY].getFigure().isMoveValid(move)) { // czy ruch jest w zakresie ruchów figury
@@ -27,16 +28,13 @@ public class Board {
                         spots[toX][toY].setEmpty(false);//teraz to pole nie jest empty
                         spots[fromX][fromY].setEmpty(true);// zeruje jej poprzednie miejsce na empty
                         spots[fromX][fromY].setFigure(null);//i zeruje figure na nulla
+                        moveHistory.countPiecesAfterMove();
                         checkEndgameCondition();
                         return true;  // poprawnie wykonany ruch zwraca true
                     }
-
-
                 }
                 }
             }
-
-
         }
         return false;
     }
@@ -50,11 +48,34 @@ public class Board {
     }
 
     private boolean isDraw() {
+        int numberOfPawns = 0;
+        int numberOfRooks = 0;
+        int numberOfKnights = 0;
+        int numberOfBishops = 0;
+        int numberOfQueens = 0;
+        int numberOfKings = 0;
+        int totalNumberOfPieces = 0;
 
+        for (int i = 0; i <= 8; i++) {
+            for (int j = 0; j <= 8; j++) {
+                if (spots[i][j].getFigure() instanceof Pawn) {numberOfPawns++; totalNumberOfPieces++;}
+                else if (spots[i][j].getFigure() instanceof Rook) {numberOfRooks++; totalNumberOfPieces++;}
+                else if (spots[i][j].getFigure() instanceof Knight) {numberOfKnights++; totalNumberOfPieces++;}
+                else if (spots[i][j].getFigure() instanceof Queen) {numberOfQueens++; totalNumberOfPieces++;}
+                else if (spots[i][j].getFigure() instanceof King) {numberOfKings++; totalNumberOfPieces++;}
+                else if (spots[i][j].getFigure() instanceof Bishop) {numberOfBishops++; totalNumberOfPieces++;}
+            }
+        }
+
+        if (totalNumberOfPieces==2 && numberOfKings==2) return true;
+        if (totalNumberOfPieces==3 && numberOfKings==2 && numberOfBishops==1) return true;
+        if (totalNumberOfPieces==3 && numberOfKings==2 && numberOfKnights==1) return true;
+        if (moveHistory.checkRule50()) return true;
+        return false;
     }
 
     private boolean isCheckmate() {
-
+    return false;
     }
 
 
