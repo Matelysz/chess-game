@@ -1,5 +1,8 @@
 package sda.games.chess;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Board {
     private Spot[][] spots;
     private GameState gameState;
@@ -50,11 +53,164 @@ public class Board {
     }
 
     private boolean isDraw() {
-
+        return false;
     }
 
     private boolean isCheckmate() {
+        Coordinates[] kingsCords = {findAKing(Color.WHITE), findAKing(Color.BLACK)};
 
+        List<Figure> whiteFigures = giveMeListWithFigures(Color.WHITE);
+        List<Figure> blackFigures = giveMeListWithFigures(Color.BLACK);
+
+        for (int i = 0; i < whiteFigures.size(); i++) {
+            checkIfKingISInTheWay(whiteFigures.get(i));
+        }
+
+        return
+    }
+
+    private boolean checkIfKingISInTheWay(Figure figure) {
+
+
+        for (int i = 0; i < 8; i++) {
+            for (int j = 0; j < 8; j++) {
+
+            }
+        }
+    }
+
+    private boolean checkIfKingISInTheWay2 (Coordinates cords, Color kingColor) {
+        Color colorToCheck = reserveColor(kingColor);
+        boolean kingIsInDanger = false;
+        kingIsInDanger = isKingInDangedByRook(colorToCheck);
+
+
+        return kingIsInDanger;
+    }
+
+    private boolean isKingInDangedByRook(Color colorToCheck, Coordinates kingCords) {
+        for (int i = 0; i < 8; i++) {
+            for (int j = 0; j < 8; j++) {
+                if (!spots[i][j].isEmpty() && spots[i][j].getFigure().getColor().equals(colorToCheck)
+                        && spots[i][j].getFigure() instanceof Rook) {
+
+                }
+            }
+        }
+        return true;
+    }
+
+    private Color reserveColor(Color color) {
+        if (color.equals(Color.WHITE)) {
+            return Color.BLACK;
+        } else {
+            return Color.WHITE;
+        }
+    }
+
+    private List giveMeListWithFigures(Color color) {
+        List<Figure> figures = new ArrayList<Figure>();
+
+        for (int i = 0; i < 8; i++) {
+            for (int j = 0; j < 8; j++) {
+                if (!spots[i][j].isEmpty() && spots[i][j].getFigure().getColor().equals(color)) {
+                    figures.add(spots[i][j].getFigure());
+                }
+            }
+        }
+        return figures;
+    }
+
+    private Coordinates findAKing(Color color) {
+        for (int x = 1; x < spots.length; x++) {
+            for (int y = 1; y < spots[0].length; y++) {
+                if (spots[x][y].getFigure() instanceof King) {
+                    if (spots[x][y].getFigure().getColor().equals(color)) {
+                        return new Coordinates(x, y);
+                    }
+                }
+            }
+        }
+        throw new IllegalStateException("King not found!");
+    }
+
+
+    private Figure checkWhatFigureIsInTheWay(int fromX, int fromY, int distanceX, int distanceY) {
+//        boolean empty = false;
+        int absDistanceX = Math.abs(distanceX);
+        int absDistanceY = Math.abs(distanceY);
+        if(spots[fromX][fromY].getFigure() instanceof Knight){
+            return null;
+        }
+        if (absDistanceY == absDistanceX) {  // jesli ten warunek spełniony to figura idzie po skosie
+            for (int i = 0; i < absDistanceX; i++) {
+                if (distanceX > 0 && distanceY > 0) {
+                    fromX++;
+                    fromY++;
+                    if (!spots[fromX][fromY].isEmpty()) {
+                        return spots[fromX][fromY].getFigure();
+                    }
+                } else if (distanceX < 0 && distanceY > 0) {
+                    fromX--;
+                    fromY++;
+                    if (!spots[fromX][fromY].isEmpty()) {
+                        return spots[fromX][fromY].getFigure();
+                    }
+                } else if (distanceX < 0 && distanceY < 0) {
+                    fromX--;
+                    fromY--;
+                    if (!spots[fromX][fromY].isEmpty()) {
+                        return spots[fromX][fromY].getFigure();
+                    }
+                } else if (distanceX > 0 && distanceY < 0) {
+                    fromX++;
+                    fromY--;
+                    if (!spots[fromX][fromY].isEmpty()) {
+                        return spots[fromX][fromY].getFigure();
+                    }
+                }
+            }
+            if (absDistanceX ==1){
+                return null;
+            }
+        }
+        if (absDistanceY > 0 && absDistanceX == 0) {// jeśli ten warunek spoeniony to figura idzie góra dół
+            for (int i = 0; i < absDistanceY; i++) {
+                if (distanceY < 0) { // jeśli idzie w dół
+                    fromY--;
+                    if (!spots[fromX][fromY].isEmpty()) {
+                        return spots[fromX][fromY].getFigure();
+                    }
+                } else if (distanceY > 0) { // jeśli idzie w góre
+                    fromY++;
+                    if (!spots[fromX][fromY].isEmpty()) {
+                        return spots[fromX][fromY].getFigure();
+                    }
+                }
+            }
+            if (absDistanceY == 1){
+                return null;
+            }
+        }
+        if (absDistanceX > 0 && absDistanceY == 0) { // jeśli ten warunek spełniony to figura idzie na boki
+            for (int i = 0; i < absDistanceX; i++) {
+                if (distanceX > 0) {
+                    fromX++;
+                    if (!spots[fromX][fromY].isEmpty()) { // idzie w prawo
+                        return spots[fromX][fromY].getFigure();
+                    }
+                } else if (distanceX < 0) {
+                    fromX--;
+                    if (!spots[fromX][fromY].isEmpty()) { // idzie w lewo
+                        return spots[fromX][fromY].getFigure();
+                    }
+                }
+            }
+            if (absDistanceX==1){
+                return null;
+            }
+        }
+        return null;
     }
 
 
