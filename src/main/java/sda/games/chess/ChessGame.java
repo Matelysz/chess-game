@@ -7,6 +7,7 @@ import static sda.games.chess.Color.WHITE;
 
 public class ChessGame {
 
+
     private Player currentPlayer;
     private Player player1;
     private Player player2;
