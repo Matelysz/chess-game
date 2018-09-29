@@ -33,17 +33,18 @@ public class ChessGame {
         Scanner scanner = new Scanner(System.in);
 
         Display display = new Display();
-        display.main(board.spots);
-
+        Display2 display2 = new Display2();
+        //display.main(board.spots);
         do {
-            display.printDisplay(board.spots);
-
+            //display.printDisplay(board.spots);
+            display2.printDisplay();
 
             Move move = currentPlayer.getMove();
            if(board.makeAMove(move, currentPlayer)==false){
                System.out.println("NIEPOPRAWNIE WPROWADZONY RUCH, SPRÓBUJ JESZCZE RAZ!");
            } else {
                System.out.println("");
+               display2.updateChessBoardDisplayAfterMove(display2.chessBoardDisplay,move);
                changeCurrentPlayer(currentPlayer);
                if (currentPlayer.equals(player2)){
                    System.out.println("RUCH GRACZA: PLAYER 1(BIAŁE)");

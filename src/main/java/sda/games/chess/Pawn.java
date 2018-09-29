@@ -43,19 +43,6 @@ public class Pawn extends Figure {
 }
 
 
-       /* if (toY - fromY != 1 && toY - fromY != -1) {
-            return true;
-        } else if (!spots[toX][toY].isEmpty()) {
-            if (toY - fromY != 1 && (toX - fromX != 1 || toX - fromX != -1) || toY - fromY != -1 && (toX - fromX != 1 || toX - fromX != -1)) {
-                return true;
-            }
-            //return true;
-        }
-        return true;
-    }
-
-    }
-*/
 
 
 
