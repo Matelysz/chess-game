@@ -7,7 +7,6 @@ public class Pawn extends Figure {
     private Player currentPlayer;
     private Player player1;
     private Player player2;
-    public Spot[][] spots;
 
 
     public Pawn(Color color) {
@@ -27,23 +26,29 @@ public class Pawn extends Figure {
         int toX = move.getToX();
         int toY = move.getToY();
 
-
-        if (spots[toX][toY].isEmpty()) {
-            if (toY - fromY != 1 && toY - fromY != -1) {
-                return true;
+        if(getColor().equals(BLACK)) {
+            if (toY - fromY != 1) {
+                return false;
             } else {
-                if (toY - fromY != 1 && (toX - fromX != 1 || toX - fromX != -1) || toY - fromY != -1 && (toX - fromX != 1 || toX - fromX != -1)) {
+                if (toY - fromY != 1 && (toX- fromX != 1 || toX - fromX != -1)) {
                     return true;
                 }
             }
-            return false;
+            return true;
+        } else if (getColor().equals(WHITE)) {
+            if (toY - fromY != -1) {
+                return false;
+            } else {
+                if (toY - fromY != -1 && (toX - fromX != 1 || toX - fromX != -1)) {
+                    return true;
+                }
+            }
+            return true;
+
         }
-        return true;
+        return false;
     }
 }
-
-
-
 
 
 
