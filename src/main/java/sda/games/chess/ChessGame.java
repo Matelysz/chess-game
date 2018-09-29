@@ -1,6 +1,5 @@
 package sda.games.chess;
 
-import javafx.application.Platform;
 
 import java.util.Scanner;
 
@@ -14,7 +13,7 @@ public class ChessGame {
     private Player player1;
     private Player player2;
     private Board board;
-    private Spot[][] spots;
+    //private Spot[][] spots;
 
 
     public Player getCurrentPlayer() {
@@ -31,14 +30,14 @@ public class ChessGame {
         Scanner scanner = new Scanner(System.in);
 
         Display display = new Display();
-        Display2 display2 = new Display2();
-
         System.out.println("WPROWADŹ SWÓJ RUCH POPRZEZ PODANIE POLA, Z KTÓREGO CHCESZ PRZESUNĄC FIGURĘ,");
         System.out.println("A NASTĘPNIE POLA NA KTÓRYM FIGURA MA SIĘ POJAWIC, WSTAWIAJĄC POMIĘDZY WYBRANE POLA ZNAK \">\". (PRZYKŁAD: A1>H8)");
         System.out.println("(W CELU ZAPOZNANIA SIĘ Z INSTRUKCJĄ GRY WEJDŹ NA STRONĘ WWW.NAJLEPSZESZACHYEVER.PL)");
         System.out.println("");
+
         do {
-            display2.printDisplay();
+            display.printDisplay(board.getSpots());
+
 
             if (currentPlayer.equals(player2)){
                 System.out.println("RUCH GRACZA: PLAYER 2(CZARNE)");
@@ -52,7 +51,8 @@ public class ChessGame {
                System.out.println("NIEPOPRAWNIE WPROWADZONY RUCH, SPRÓBUJ JESZCZE RAZ!");
            } else {
                System.out.println("");
-               display2.updateChessBoardDisplayAfterMove(display2.chessBoardDisplay,move);
+//               display.printDisplay(board.getSpots());
+               //display2.updateChessBoardDisplayAfterMove(display2.chessBoardDisplay,move);
                changeCurrentPlayer(currentPlayer);
            }
         } while (board.getGameState().equals(GameState.INPROGRESS));
