@@ -8,6 +8,7 @@ import static sda.games.chess.Color.WHITE;
 
 public class ChessGame {
 
+
     private Player currentPlayer;
     private Player player1;
     private Player player2;
@@ -26,33 +27,33 @@ public class ChessGame {
         currentPlayer = player1;
         Board board = new Board();
 
-//        BoardGenerator boardGenerator = new BoardGenerator();
-//        spots = boardGenerator.generateBoard();
-
         Scanner scanner = new Scanner(System.in);
 
         Display display = new Display();
-        //Display2 display2 = new Display2();
-        //display.main(board.spots);
+        System.out.println("WPROWADŹ SWÓJ RUCH POPRZEZ PODANIE POLA, Z KTÓREGO CHCESZ PRZESUNĄC FIGURĘ,");
+        System.out.println("A NASTĘPNIE POLA NA KTÓRYM FIGURA MA SIĘ POJAWIC, WSTAWIAJĄC POMIĘDZY WYBRANE POLA ZNAK \">\". (PRZYKŁAD: A1>H8)");
+        System.out.println("(W CELU ZAPOZNANIA SIĘ Z INSTRUKCJĄ GRY WEJDŹ NA STRONĘ WWW.NAJLEPSZESZACHYEVER.PL)");
+        System.out.println("");
+
         do {
-            //display.printDisplay(board.spots);
             display.printDisplay(board.getSpots());
+
+
+            if (currentPlayer.equals(player2)){
+                System.out.println("RUCH GRACZA: PLAYER 2(CZARNE)");
+            } else {
+                System.out.println("RUCH GRACZA: PLAYER 1(BIAŁE)");
+            }
+            System.out.print("WPROWADŹ RUCH: ");
 
             Move move = currentPlayer.getMove();
            if(board.makeAMove(move, currentPlayer)==false){
                System.out.println("NIEPOPRAWNIE WPROWADZONY RUCH, SPRÓBUJ JESZCZE RAZ!");
            } else {
                System.out.println("");
-               display.printDisplay(board.getSpots());
+//               display.printDisplay(board.getSpots());
                //display2.updateChessBoardDisplayAfterMove(display2.chessBoardDisplay,move);
                changeCurrentPlayer(currentPlayer);
-               if (currentPlayer.equals(player2)){
-                   System.out.println("RUCH GRACZA: PLAYER 1(BIAŁE)");
-               } else {
-                   System.out.println("RUCH GRACZA: PLAYER 2(CZARNE)");
-
-
-               }
            }
         } while (board.getGameState().equals(GameState.INPROGRESS));
     }
